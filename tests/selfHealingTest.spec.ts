@@ -7,7 +7,7 @@ test('test xpath with self-healing', async ({ page }) => {
     // We intentionally break your original xpath to simulate a UI change.
     // Original was: "//button[@id='btn1']"
     const brokenSelector = "//button[@id='btn1-BROKEN']";
-    const intent = "The first 'submit' button under 'Form' Section 1";
+    const intent = "Submit button which is under the form id='section1'";
 
     // Call our wrapper instead of page.locator().click()
     await smartClick(page, brokenSelector, intent);
