@@ -9,7 +9,6 @@ jobs:
   test:
     runs-on: ubuntu-latest
     
-    # Required permissions to publish to GitHub Pages
     permissions:
       contents: write
       pages: write
@@ -34,12 +33,18 @@ jobs:
 
       - name: Run Self-Healing Playwright Tests in Container
         run: |
-          docker run --rm \
+          # 1. Create the container without starting it immediately
+          CONTAINER_ID=$(docker create \
             -e GEMINI_API_KEY="${{ secrets.GEMINI_API_KEY }}" \
             playwright-self-healing:latest \
-            npx playwright test tests/selfHealingTest.spec.ts
+            npx playwright test tests/selfHealingTest.spec.ts)
 
-      # 1. Upload Report Artifacts
+          # 2. Start the container and wait for the tests to finish
+          docker start -a $CONTAINER_ID
+
+          # 3. Copy the Playwright HTML report out of the container to the host runner
+          docker cp $CONTAINER_ID:/app/playwright-report ./playwright-report
+
       - name: Upload Playwright Test Report
         if: always()
         uses: actions/upload-artifact@v4
@@ -48,7 +53,6 @@ jobs:
           path: playwright-report/
           retention-days: 7
 
-      # 2. Deploy Report to GitHub Pages (Recruiters can view live reports!)
       - name: Deploy to GitHub Pages
         if: always()
         uses: peaceiris/actions-gh-pages@v3
