@@ -9,6 +9,7 @@ jobs:
   deploy-and-test-gcp:
     runs-on: ubuntu-latest
     
+    # Required for secure OIDC authentication with Google Cloud
     permissions:
       contents: read
       id-token: write
@@ -24,19 +25,6 @@ jobs:
 
       - name: Set up Cloud SDK (gcloud)
         uses: google-github-actions/setup-gcloud@v2
-
-      - name: Ensure Secret Manager API & IAM Access
-        run: |
-          # Enable Secret Manager API
-          gcloud services enable secretmanager.googleapis.com --project=${{ secrets.GCP_PROJECT_ID }}
-          
-          # Fetch Project Number dynamically
-          PROJECT_NUM=$(gcloud projects describe ${{ secrets.GCP_PROJECT_ID }} --format="value(projectNumber)")
-          
-          # Automatically assign Secret Accessor role to the Compute Service Account
-          gcloud projects add-iam-policy-binding ${{ secrets.GCP_PROJECT_ID }} \
-            --member="serviceAccount:${PROJECT_NUM}-compute@developer.gserviceaccount.com" \
-            --role="roles/secretmanager.secretAccessor" || true
 
       - name: Submit & Build Docker Image via Cloud Build
         run: |
