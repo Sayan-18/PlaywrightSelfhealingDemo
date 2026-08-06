@@ -1,5 +1,5 @@
-# 1. Use a standard Node LTS base image instead of a hardcoded Playwright version
-FROM node:20-jammy
+# 1. Use a standard Node LTS base image (Debian Bookworm)
+FROM node:20-bookworm
 
 # Set the working directory inside the container
 WORKDIR /app
