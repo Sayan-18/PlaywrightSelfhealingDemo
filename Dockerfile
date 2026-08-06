@@ -10,7 +10,7 @@ COPY package*.json ./
 # 3. Install NPM packages (This locks in whatever exact Playwright version is in your package.json)
 RUN npm install
 
-# 4. The Magic Command: Automatically install the matching Chromium browser AND missing Linux dependencies
+# 4. Automatically install the matching Chromium browser AND missing Linux dependencies
 RUN npx playwright install --with-deps chromium
 
 # 5. Copy the rest of your test code and configuration

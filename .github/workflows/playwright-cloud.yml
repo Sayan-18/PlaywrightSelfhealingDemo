@@ -26,9 +26,9 @@ jobs:
       - name: Set up Cloud SDK (gcloud)
         uses: google-github-actions/setup-gcloud@v2
 
-      - name: Submit & Build Docker Image via Cloud Build
+      - name: Submit & Build Docker Image via Cloud Build (No Cache)
         run: |
-          gcloud builds submit --tag us-central1-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/playwright-repo/playwright-self-healing:latest .
+          gcloud builds submit --no-cache --tag us-central1-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/playwright-repo/playwright-self-healing:latest .
 
       - name: Deploy and Execute Self-Healing Tests on Cloud Run Job
         run: |
