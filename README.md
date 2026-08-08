@@ -1,6 +1,5 @@
 # 🤖 Autonomous Self-Healing Test Automation Pipeline
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![GCP Cloud Run](https://img.shields.io/badge/Cloud-Google%20Cloud%20Run-blue?logo=google-cloud)](https://cloud.google.com/run)
 [![AI Powered](https://img.shields.io/badge/AI-Gemini%20Flash-orange?logo=google)](https://ai.google.dev/)
 
@@ -121,8 +120,3 @@ In this framework:
 * Gemini evaluates the structural semantics, identifies the intended element, and returns the updated selector string.
 * The test execution seamlessly resumes, drastically reducing UI test maintenance overhead.
 
----
-
-## 📄 License
-
-Distributed under the MIT License. See `LICENSE` for more information.
