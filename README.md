@@ -1,6 +1,5 @@
 # 🤖 Autonomous Self-Healing Test Automation Pipeline
 
-[![Playwright Tests](https://github.com/your-username/your-repo-name/actions/workflows/playwright-cloud.yml/badge.svg)](https://github.com/your-username/your-repo-name/actions)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![GCP Cloud Run](https://img.shields.io/badge/Cloud-Google%20Cloud%20Run-blue?logo=google-cloud)](https://cloud.google.com/run)
 [![AI Powered](https://img.shields.io/badge/AI-Gemini%20Flash-orange?logo=google)](https://ai.google.dev/)
